@@ -53,7 +53,10 @@ app.use(function(req, res, next){
 
 
 //Connect to MongoDB datatbase - first argument is location of DB, second just gets rid of some deprecation warnings
-mongoose.connect("mongodb://localhost/poop_camp", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+//mongoose.connect("mongodb://localhost/poop_camp", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+
+//Connection for deployed DB
+mongoose.connect("mongodb+srv://jamesb:Overcr0ak!@cluster0-hpmow.mongodb.net/poop_camp?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 //Tells the app to use bodyParser to deal with form submissions
 app.use(bodyParser.urlencoded({extended: true}));
