@@ -1,5 +1,5 @@
 //require statements for all the node.js packages we're using and have installed
-var express = require("express"),
+const express = require("express"),
 	app = express(),
 	bodyParser = require("body-parser"),
 	mongoose = require("mongoose"),
@@ -19,7 +19,7 @@ var express = require("express"),
 	seedDB = require("./seeds");
 
 //Requiring Routes which are separate js files (i.e. not in app.js)
-var commentRoutes = require("./routes/comments"),
+const commentRoutes = require("./routes/comments"),
 	campgroundRoutes = require("./routes/campgrounds"),
 	indexRoutes = require("./routes/index");
 
@@ -51,8 +51,10 @@ app.use(function(req, res, next){
 	next();
 });
 
+const url = process.env.DATABASEURL || "mongodb://localhost/poop_camp";
+
 //Connect to MongoDB database using environment variable - see following for specifics
-mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 
 //Connect to MongoDB datatbase - first argument is location of DB, second just gets rid of some deprecation warnings
@@ -83,7 +85,7 @@ app.use("/campgrounds", campgroundRoutes);
 
 
 //SERVER SETUP
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, function () {
   console.log("PoopCamp server Has Started!");
 });

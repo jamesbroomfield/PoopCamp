@@ -1,11 +1,11 @@
-var express = require("express");
-var router = express.Router({mergeParams: true});
-var Campground = require("../models/campground");
-var middleware = require("../middleware")
+const 	express = require("express"),
+ 		router = express.Router({mergeParams: true}),
+ 		Campground = require("../models/campground"),
+ 		middleware = require("../middleware");
 
 
 //INDEX ROUTE
-router.get("/", function(req, res){	
+router.get("/", (req, res)=>{	
 	Campground.find({}, (err, campgrounds) => {
 		if(err){
 			console.log(err);
@@ -22,15 +22,24 @@ router.get("/new", middleware.isLoggedIn, (req, res) => {
 
 //CREATE ROUTE
 router.post("/", middleware.isLoggedIn, function(req, res){
-	var name = req.body.name;
-	var price = req.body.price;
-	var image = req.body.image;
-	var desc = req.body.description;
-	var author = {
-		id: req.user._id,
-		username: req.user.username
-	}
-	var newCampground = {name: name, price: price, image: image, description: desc, author: author};
+	// let name = req.body.name;
+	// let price = req.body.price;
+	// let image = req.body.image;
+	// let desc = req.body.description;
+	// let author = {
+	// 	id: req.user._id,
+	// 	username: req.user.username
+	// }
+	let newCampground = {
+		name: req.body.name, 
+		price: req.body.price, 
+		image: req.body.image, 
+		description: req.body.description, 
+		author: {
+			id: req.user._id,
+			username: req.user.username
+		}
+	};
 	Campground.create(newCampground, function(err, newlyCreated){
 		if(err){
 			console.log(err);

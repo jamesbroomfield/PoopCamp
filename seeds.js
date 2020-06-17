@@ -1,8 +1,8 @@
-var mongoose = require("mongoose"),
+const mongoose = require("mongoose"),
     Campground = require("./models/campground"),
     Comment = require("./models/comment");
 
-var data = [
+const data = [
     {
         name: "Guffy Acres",
         image: "https://i2-prod.cambridge-news.co.uk/incoming/article12958592.ece/ALTERNATES/s1200b/Campsites.jpg",

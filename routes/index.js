@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router({mergeParams: true});
-var passport = require("passport");
-var User = require("../models/user");
-var middleware = require("../middleware")
+const 	express = require("express"),
+		router = express.Router({mergeParams: true}),
+ 		passport = require("passport"),
+		User = require("../models/user"),
+		middleware = require("../middleware");
 
 
 //ROOT ROUTE
